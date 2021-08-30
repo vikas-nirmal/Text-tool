@@ -1,7 +1,7 @@
-import {  BrowserRouter as Router } from 'react-router-dom';
-import './App.css';
-import Body from './Components/Body';
-import Navbar from './Components/Navbar';
+import { BrowserRouter as Router } from "react-router-dom";
+import "./App.css";
+import Body from "./Components/Body";
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (

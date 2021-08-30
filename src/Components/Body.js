@@ -7,27 +7,27 @@ export default function Body() {
     setText(newText);
   };
 
-const handleLoClick = ()=>{
+  const handleLoClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
-}
+  };
 
-const handleCopyClick =()=>{
+  const handleCopyClick = () => {
     let ntext = document.getElementById("myBox");
     ntext.select();
-    ntext.setSelectionRange(0, 9999);
     navigator.clipboard.writeText(ntext.value);
-}
+    document.getSelection().removeAllRanges();
+  };
 
-const handleSpaceClick =()=>{
-let newText = text.split(/[ ]+/);
-setText(newText.join(" "));
-}
+  const handleSpaceClick = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+  };
 
-const handleClearClick =()=>{
-    let newText = ''
+  const handleClearClick = () => {
+    let newText = "";
     setText(newText);
-}
+  };
 
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -44,8 +44,8 @@ const handleClearClick =()=>{
           value={text}
           id="myBox"
         ></textarea>
-        </div>
-        <div className="btn-flex">
+      </div>
+      <div className="btn-flex">
         <button className="btn-primary" onClick={handleUpClick}>
           Uppercase
         </button>
@@ -61,12 +61,18 @@ const handleClearClick =()=>{
         <button className="btn-primary" onClick={handleClearClick}>
           Clear
         </button>
-        </div>
-      
+      </div>
+
       <div className="container">
-          <h1>Your text Summary!</h1>
-          <p>{0.008 * text.split(" ").length} Time to read</p>
-          <p>{text.split(" ").length} words , {text.length} Characters</p>
+        <h1>Your text Summary!</h1>
+        <p>{0.008 * text.split(" ").filter((element)=>{
+          return element.length!==0
+        }).length} Time to read</p>
+        <p>
+          {text.split(" ").filter((element)=>{
+          return element.length!==0
+        }).length} words , {text.length} Characters
+        </p>
       </div>
     </div>
   );
